@@ -21,6 +21,10 @@
 go.work
 go.work.sum
 
+# Command directories
+SlackMessages
+slack_records.csv
+
 # IDE directories and misc. files
 .idea
 .vscode
