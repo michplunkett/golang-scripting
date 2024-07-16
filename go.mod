@@ -1,4 +1,4 @@
-module cmd
+module scripts
 
 go 1.22.4
 
