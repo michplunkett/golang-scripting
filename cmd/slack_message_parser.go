@@ -73,7 +73,7 @@ type CSVRecord struct {
 }
 
 func main() {
-	files, err := filepath.Glob("./SlackMessages/*.json")
+	files, err := filepath.Glob("../SlackMessages/*.json")
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -147,7 +147,7 @@ func main() {
 		csvRecords = append(csvRecords, record)
 	}
 
-	csvFile, err := os.Create("slack_records.csv")
+	csvFile, err := os.Create("../slack_records.csv")
 	if err != nil {
 		fmt.Println(err)
 	}
