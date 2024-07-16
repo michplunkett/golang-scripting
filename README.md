@@ -9,5 +9,5 @@ Various scripts written in Golang.
 #### Instructions
 ```console
 cp [YOUR_ARCHIVE_PATH_HERE]/*.json ./SlackMessages/
-go run slack_message_parser.go
+go run ./cmd/slackMessageParser/main.go
 ```
