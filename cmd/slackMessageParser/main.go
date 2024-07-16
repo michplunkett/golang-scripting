@@ -9,6 +9,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"log"
 	"os"
 	"path/filepath"
 	"strconv"
@@ -75,7 +76,11 @@ type CSVRecord struct {
 func main() {
 	files, err := filepath.Glob("../../SlackMessages/*.json")
 	if err != nil {
-		fmt.Println(err)
+		log.Fatal(err)
+	}
+
+	if len(files) == 0 {
+		log.Fatal("Could not find *.json files in the ./SlackMessages directory")
 	}
 
 	messages := make([]*Message, 0)
@@ -149,7 +154,7 @@ func main() {
 
 	csvFile, err := os.Create("../../slack_records.csv")
 	if err != nil {
-		fmt.Println(err)
+		log.Fatal(err)
 	}
 	defer csvFile.Close()
 
