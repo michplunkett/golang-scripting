@@ -1,4 +1,4 @@
-module scripts
+module github.com/michplunkett/golang-scripting
 
 go 1.22.4
 
