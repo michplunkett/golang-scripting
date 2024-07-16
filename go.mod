@@ -1,4 +1,4 @@
-module slack_message_parser.go
+module cmd
 
 go 1.22.4
 
