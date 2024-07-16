@@ -74,11 +74,11 @@ type CSVRecord struct {
 }
 
 func main() {
-	if _, err := os.Stat("../../SlackMessages"); os.IsNotExist(err) {
+	if _, err := os.Stat("./SlackMessages"); os.IsNotExist(err) {
 		log.Fatal("the ./SlackMessages directory does not exist")
 	}
 
-	files, err := filepath.Glob("../../SlackMessages/*.json")
+	files, err := filepath.Glob("./SlackMessages/*.json")
 	if err != nil {
 		log.Fatal(err)
 	}
