@@ -4,7 +4,7 @@ Various scripts written in Golang.
 ## Scripts
 
 ### Slack Message Parser
-
+This tool is used to parse the `json`-formatted data that comes from [exporting Slack workspace data](https://slack.com/help/articles/201658943-Export-your-workspace-data).
 
 #### Instructions
 ```console
