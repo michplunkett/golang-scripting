@@ -74,13 +74,17 @@ type CSVRecord struct {
 }
 
 func main() {
+	if _, err := os.Stat("../../SlackMessages"); os.IsNotExist(err) {
+		log.Fatal("the ./SlackMessages directory does not exist")
+	}
+
 	files, err := filepath.Glob("../../SlackMessages/*.json")
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	if len(files) == 0 {
-		log.Fatal("Could not find *.json files in the ./SlackMessages directory")
+		log.Fatal("could not find *.json files in the ./SlackMessages directory")
 	}
 
 	messages := make([]*Message, 0)
@@ -88,14 +92,14 @@ func main() {
 	for _, file := range files {
 		bytes, err := os.ReadFile(file)
 		if err != nil {
-			fmt.Printf("Error occured while opening %s: %+v\n", file, err)
+			fmt.Printf("error occured while opening %s: %+v\n", file, err)
 			continue
 		}
 
 		fileMessages := make([]*Message, 0)
 		err = json.Unmarshal(bytes, &fileMessages)
 		if err != nil {
-			fmt.Printf("Error occured while parsing JSON from %s: %+v\n", file, err)
+			fmt.Printf("error occured while parsing JSON from %s: %+v\n", file, err)
 			continue
 		}
 
@@ -116,13 +120,13 @@ func main() {
 		timeStampSplit := strings.Split(msg.TS, ".")
 		seconds, err := strconv.ParseInt(timeStampSplit[0], 10, 64)
 		if err != nil {
-			fmt.Printf("Error occured while parsing seconds: %+v\n", err)
+			fmt.Printf("error occured while parsing seconds: %+v\n", err)
 			continue
 		}
 
 		nanoseconds, err := strconv.ParseInt(timeStampSplit[1], 10, 64)
 		if err != nil {
-			fmt.Printf("Error occured while parsing nanoseconds: %+v\n", err)
+			fmt.Printf("error occured while parsing nanoseconds: %+v\n", err)
 			continue
 		}
 
