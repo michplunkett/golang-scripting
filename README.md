@@ -8,6 +8,7 @@ This tool is used to parse the `json`-formatted data that comes from [exporting 
 
 #### Instructions
 ```console
+mkdir -p ./SlackMessages
 cp [YOUR_ARCHIVE_PATH_HERE]/*.json ./SlackMessages/
 go run ./cmd/slackMessageParser/main.go
 ```
