@@ -156,7 +156,7 @@ func main() {
 		csvRecords = append(csvRecords, record)
 	}
 
-	csvFile, err := os.Create("../../slack_records.csv")
+	csvFile, err := os.Create("slack_records.csv")
 	if err != nil {
 		log.Fatal(err)
 	}
