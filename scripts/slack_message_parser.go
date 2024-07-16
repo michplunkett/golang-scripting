@@ -4,7 +4,7 @@
  * Used to parse Slack messages.
  */
 
-package scripts
+package main
 
 import (
 	"encoding/json"
