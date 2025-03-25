@@ -29,3 +29,4 @@ slack_records.csv
 .idea
 .vscode
 **/.DS_Store
+.env*
