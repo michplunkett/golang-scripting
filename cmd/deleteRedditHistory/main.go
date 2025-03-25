@@ -10,6 +10,8 @@ import (
 	"fmt"
 	"log"
 	"os"
+
+	"github.com/vartanbeno/go-reddit/v2/reddit"
 )
 
 type envVars struct {
@@ -39,5 +41,12 @@ func main() {
 
 	if !arrayHasNoEmptyStrings([]string{e.appID, e.appSecret, e.userName, e.userPassword}) {
 		log.Fatal(fmt.Errorf("one of the last.fm environment variables is not present in your system"))
+	}
+
+	credentials := reddit.Credentials{ID: e.appID, Secret: e.appSecret, Username: e.userName, Password: e.userPassword}
+	_, clientErr := reddit.NewClient(credentials)
+
+	if clientErr != nil {
+		log.Fatal(clientErr)
 	}
 }
