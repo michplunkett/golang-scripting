@@ -6,6 +6,13 @@
 
 package main
 
+type envVars struct {
+	appID        string
+	appSecret    string
+	userName     string
+	userPassword string
+}
+
 func main() {
 
 }
