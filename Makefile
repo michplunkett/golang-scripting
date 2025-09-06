@@ -13,7 +13,7 @@ lint:
 
 .PHONY: delete-reddit-history
 delete-reddit-history:
-	go run .cmd/deleteRedditHistory/main.go
+	go run ./cmd/deleteRedditHistory/main.go
 
 .PHONY: parse-slack-data
 parse-slack-data:
