@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2025 Michael Plunkett (https://github.com/michplunkett)
  * All rights reserved.
- * Used to delete Reddit history of a given user.
+ * Used to delete Reddit user posts and comments older than a given threshold date.
  */
 
 package main
@@ -53,18 +53,17 @@ func main() {
 
 	credentials := reddit.Credentials{ID: e.appID, Secret: e.appSecret, Username: e.userName, Password: e.userPassword}
 	cli, clientErr := reddit.NewClient(credentials)
-
 	if clientErr != nil {
 		log.Fatal(clientErr)
 	}
 
 	// Get overview of user
-	commentService := *cli.Comment
-	postService := *cli.Post
+	_ = *cli.Comment
+	_ = *cli.Post
 	userService := *cli.User
 
 	// Get all posts
-	fmt.Println("------- Pulling user posts. -------")
+	fmt.Println("------- Pulling user posts")
 
 	lastPostID := ""
 	postIds := make([]string, 0)
@@ -80,7 +79,6 @@ func main() {
 			postOptions.ListOptions.After = lastPostID
 		}
 
-		fmt.Println("Pulling more posts.")
 		posts, _, err := userService.Posts(ctx, postOptions)
 		if err != nil {
 			log.Fatal(err)
@@ -93,7 +91,6 @@ func main() {
 		for _, post := range posts {
 			if post.Created.Time.Before(THRESHOLD) ||
 				post.Created.Time.Equal(THRESHOLD) {
-				fmt.Println(post.Created)
 				postIds = append(postIds, post.FullID)
 			}
 		}
@@ -102,7 +99,7 @@ func main() {
 	}
 
 	// Delete all posts
-	fmt.Println("------- Deleting user posts. -------")
+	fmt.Println("------- Deleting user posts:", len(postIds))
 	for _, pID := range postIds {
 		fmt.Println(pID)
 		//_, err := postService.Delete(ctx, pID)
@@ -112,7 +109,8 @@ func main() {
 	}
 
 	// Get all comments
-	fmt.Println("------- Pulling user comments. -------")
+	fmt.Println("------- Pulling user comments")
+
 	lastCommentID := ""
 	commentIds := make([]string, 0)
 	commentOptions := &reddit.ListUserOverviewOptions{
@@ -127,7 +125,6 @@ func main() {
 			commentOptions.ListOptions.After = lastCommentID
 		}
 
-		fmt.Println("Pulling more comments.")
 		comments, _, err := userService.Comments(ctx, commentOptions)
 		if err != nil {
 			log.Fatal(err)
@@ -148,7 +145,8 @@ func main() {
 	}
 
 	// Delete all comments
-	fmt.Println("------- Deleting user comments. -------")
+	fmt.Println("------- Deleting user comments:", len(commentIds))
+
 	for _, cID := range commentIds {
 		fmt.Println(cID)
 		//_, err := commentService.Delete(ctx, cID)
