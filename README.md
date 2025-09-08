@@ -4,7 +4,7 @@ Various scripts written in Golang.
 ## Scripts
 
 ### Reddit Comment and Post Deleter
-This is used to delete all comments for a given user that are older than 2-years-old. To properly configure, please 
+This script deletes all comments for a given user that are older than 2 years old. To properly configure, please
 create the following environment variables: `REDDIT_USER_ID`, `REDDIT_USER_PASSWORD`, `REDDIT_APP_ID`, `REDDIT_SECRET`.
 
 For information regarding the acquisition of values for the above environment variables, please 
