@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2025 Michael Plunkett (https://github.com/michplunkett)
  * All rights reserved.
- * Used to delete Reddit user posts and comments older than a given threshold date.
+ * Used to delete Reddit user posts and comments older than 2-years-old.
  */
 
 package main
@@ -58,8 +58,8 @@ func main() {
 	}
 
 	// Get overview of user
-	_ = *cli.Comment
-	_ = *cli.Post
+	commentService := *cli.Comment
+	postService := *cli.Post
 	userService := *cli.User
 
 	// Get all posts
@@ -101,11 +101,10 @@ func main() {
 	// Delete all posts
 	fmt.Println("------- Deleting user posts:", len(postIds))
 	for _, pID := range postIds {
-		fmt.Println(pID)
-		//_, err := postService.Delete(ctx, pID)
-		//if err != nil {
-		//	log.Fatal(err)
-		//}
+		_, err := postService.Delete(ctx, pID)
+		if err != nil {
+			log.Fatal(err)
+		}
 	}
 
 	// Get all comments
@@ -148,10 +147,9 @@ func main() {
 	fmt.Println("------- Deleting user comments:", len(commentIds))
 
 	for _, cID := range commentIds {
-		fmt.Println(cID)
-		//_, err := commentService.Delete(ctx, cID)
-		//if err != nil {
-		//	log.Fatal(err)
-		//}
+		_, err := commentService.Delete(ctx, cID)
+		if err != nil {
+			log.Fatal(err)
+		}
 	}
 }
