@@ -9,14 +9,14 @@ on:
 jobs:
 
   audit:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
 
       - name: Set up Go
         uses: actions/setup-go@v2
         with:
-          go-version: 1.22
+          go-version: 1.23
 
       - name: Verify dependencies
         run: go mod verify
